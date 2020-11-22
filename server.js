@@ -37,6 +37,7 @@ client.on('ready', message =>{
 });
 
 client.on('message', message =>{
+  
   if (message.author.id == client.user.id || message.author.bot){
     return;
   }
@@ -49,8 +50,13 @@ client.on('message', message =>{
     sendMsg(message.channel.id, text);
     return;
   }
-  if (message.content === `!server`) {
-	message.channel.send(`This server's name is: ${message.guild.name}`);
+  if (message.content === `n!server`) {//サーバ－情報
+	  message.channel.send(`This server's name is: ${message.guild.name}`);
+    message.channel.send(`Server name: ${message.guild.name}\nTotal members: ${message.guild.memberCount}`)
+	
+}
+  if (message.content==='!userdate'){//ユーザ-情報
+    message.channel.send(`Your username: ${message.author.username}\nYour ID: ${message.author.id}`);
   }
 });
 
