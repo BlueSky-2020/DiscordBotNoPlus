@@ -58,13 +58,21 @@ client.on('message', message =>{
   if (message.content==='!userdate'){//ユーザ-情報
     message.channel.send(`Your username: ${message.author.username}\nYour ID: ${message.author.id}`);
   }
+  if (message.content==='n!voiceon'){//Voice Join
+    
+  }
 });
 
 if(process.env.DISCORD_BOT_TOKEN == undefined){
  console.log('DISCORD_BOT_TOKENが設定されていません。');
  process.exit(0);
 }
-
+client.on('message', async message => {
+	// Join the same voice channel of the author of the message
+	if (message.member.voice.channel) {
+		const connection = await message.member.voice.channel.join();
+	}
+});
 client.login( process.env.DISCORD_BOT_TOKEN );
 
 function sendReply(message, text){
